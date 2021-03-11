@@ -16,9 +16,6 @@ public class eventHandler : MonoBehaviour
 
     GameObject ePopup;
 
-    public bool teaBox = false;
-
-
     private void Awake()
     {
         player = GameObject.Find("Player");
@@ -31,13 +28,10 @@ public class eventHandler : MonoBehaviour
     {
         detectPlayerRange();
         detectPlayerInput();
-        Debug.Log(playerInRange);
     }
 
     void detectPlayerRange() 
     {
-        if(!teaBox || GameObject.Find("Scene Manager").GetComponent<SceneManager>().hasDrankCoffee == true)
-        {
             if (Vector3.Distance(player.transform.position, transform.position) <= interactableRange && !activateable.hasActivated)
             {
                 playerInRange = true;
@@ -48,8 +42,6 @@ public class eventHandler : MonoBehaviour
                 playerInRange = false;
                 ePopup.SetActive(false);
             }
-        }
-        
     }
 
     void detectPlayerInput() 

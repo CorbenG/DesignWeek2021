@@ -14,7 +14,14 @@ public class eventGoToScene : MonoBehaviour, IActivateable
     public AudioClip openedClip;
     Subtitles subtitles;
 
+    private eventInventory inventory;
+
     public bool hasActivated { get; set; }
+
+    private void Awake()
+    {
+        inventory = GameObject.Find("Scene Manager").GetComponent<eventInventory>();
+    }
 
     public void activate()
     {
@@ -25,13 +32,13 @@ public class eventGoToScene : MonoBehaviour, IActivateable
             sceneManager = GameObject.Find("Scene Manager").GetComponent<SceneManager>();
             sceneManager.currentScene.GetComponent<Room>().GoToRoom("Interact");
         }
-        else if (locked && sceneManager.hasHouseKeys)
+        else if (locked && inventory.doorKey)
         {
             subtitles.newText = openedSubtitle;
             source.PlayOneShot(openedClip);
             locked = false;
         }
-        else if (locked && !sceneManager.hasHouseKeys)
+        else if (locked && !inventory.doorKey)
         {
             subtitles.newText = lockedSubtitle;
             source.PlayOneShot(lockedClip);

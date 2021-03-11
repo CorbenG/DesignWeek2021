@@ -16,8 +16,6 @@ public class SceneManager : MonoBehaviour
     float stillTimer;
     bool isStill;
 
-    public bool hasHouseKeys = false;
-    public bool hasDrankCoffee = false;
 
     bool hallwayStillSaid = false;
     bool kitchenStillSaid = false;

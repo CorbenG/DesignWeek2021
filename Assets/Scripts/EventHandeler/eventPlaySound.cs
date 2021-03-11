@@ -8,9 +8,6 @@ public class eventPlaySound : MonoBehaviour, IActivateable
     public AudioSource source;
     public string subtitle;
     Subtitles subtitles;
-    public bool houseKey = false;
-    public bool coffeeCup = false;
-    public bool teaBox = false;
 
     public bool hasActivated { get; set; }
 
@@ -20,19 +17,8 @@ public class eventPlaySound : MonoBehaviour, IActivateable
         {
             subtitles = GameObject.Find("Subtitles").GetComponent<Subtitles>();
             subtitles.newText = subtitle;
-            source.PlayOneShot(source.clip);
+            playSound();
             hasActivated = true;
-            if (houseKey)
-            {
-                SceneManager sceneManager = GameObject.Find("Scene Manager").GetComponent<SceneManager>();
-                sceneManager.hasHouseKeys = true;
-                this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            }
-            if (coffeeCup)
-            {
-                SceneManager sceneManager = GameObject.Find("Scene Manager").GetComponent<SceneManager>();
-                sceneManager.hasDrankCoffee = true;
-            }
         }
     }
 
