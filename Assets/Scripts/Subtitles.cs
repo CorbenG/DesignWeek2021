@@ -43,7 +43,6 @@ public class Subtitles : MonoBehaviour
         {
             if (currentTime() >= nextLetterCounter && newText.Length > 0 && letterIndex < newText.Length)
             {
-                Debug.Log(letterIndex);
                 currentText = currentText + newText[letterIndex];
                 if(letterIndex < newText.Length)
                     letterIndex++;

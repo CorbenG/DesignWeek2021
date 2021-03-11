@@ -11,8 +11,9 @@ public class eventPlaySound : MonoBehaviour, IActivateable
 
     public void activate()
     {
+        Debug.Log("Activate!");
         if(!hasActivated)
-        playSound();
+            playSound();
     }
 
     public void playSound()

@@ -15,18 +15,44 @@ public class playerMove : MonoBehaviour
     public LayerMask walkableLayers;
     public bool grounded;
 
+    Vector2 velocity;
+    float AccelerationFactor = 20f;
+    float DecelerationFactor = 1.1f;
+    public float MaxSpeed;
+
+    SceneManager sceneManager;
+
+    private void Start()
+    {
+        _input = GetComponent<playerInput>();
+        rb = GetComponent<Rigidbody2D>();
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManager>();
+    }
+
     private void Update()
     {
         move();
         detectGround();
         jump();
-        
+        MoveRooms();
     }
 
     private void move()
     {
+        /*
         Vector3 moveVector = new Vector3(_input.moveX,0);
         rb.MovePosition(transform.position + moveVector * moveSpeed * Time.deltaTime);
+        */
+        //Calculate velocty based on input
+        velocity = Vector2.ClampMagnitude(velocity + new Vector2(Input.GetAxisRaw("Horizontal") * AccelerationFactor * Time.deltaTime, 0), MaxSpeed);
+
+        //Slow down if no input
+        if (Input.GetAxisRaw("Horizontal") == 0)
+        {
+            velocity.x = velocity.x / DecelerationFactor;
+        }
+        //Update position
+        transform.position = new Vector3(transform.position.x + velocity.x * Time.deltaTime, transform.position.y, 0);
     }
 
     void animationControl() 
@@ -51,5 +77,22 @@ public class playerMove : MonoBehaviour
     {
         Gizmos.color = Color.black;
         Gizmos.DrawLine(transform.position, Vector2.down * groundCheckRange);
+    }
+
+    void MoveRooms()
+    {
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "RightCollider")
+        {
+            sceneManager.currentScene.GetComponent<Room>().GoToRoom("Right");
+        }
+        else if (collision.gameObject.tag == "LeftCollider")
+        {
+            sceneManager.currentScene.GetComponent<Room>().GoToRoom("Left");
+        }
     }
 }
