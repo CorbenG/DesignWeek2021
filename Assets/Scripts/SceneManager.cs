@@ -16,9 +16,22 @@ public class SceneManager : MonoBehaviour
     float stillTimer;
     bool isStill;
 
+    public bool hasHouseKeys = false;
+    public bool hasDrankCoffee = false;
+
     bool hallwayStillSaid = false;
     bool kitchenStillSaid = false;
     bool livingStillSaid = false;
+    bool parkStillSaid1 = false;
+    bool parkStillSaid2 = false;
+    bool dogStillSaid = false;
+    bool flowersStillSaid = false;
+
+    bool returningHome = false;
+    bool hasLeftBefore = false;
+    bool hasReachedParkEndBefore = false;
+    bool hasGoneBackParkBefore = false;
+    bool hasSaidExercise = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +61,9 @@ public class SceneManager : MonoBehaviour
 
         if(prevScene != currentScene.name)
         {
+            stillTimer = 0;
             //Movement cues
-            if(prevScene == "Bedroom" && currentScene.name == "Hallway")
+            if (prevScene == "Bedroom" && currentScene.name == "Hallway")
             {
                 subtitles.newText = "I left my room.";
                 soundPlayer.PlayOneShot(audioClips[1]);
@@ -74,35 +88,63 @@ public class SceneManager : MonoBehaviour
                 subtitles.newText = "I went back into the kitchen.";
                 soundPlayer.PlayOneShot(audioClips[8]);
             }
-            else if (prevScene == "Living Room" && currentScene.name == "Entrance")
+            else if (prevScene == "Living Room" && currentScene.name == "Entrance" && !hasLeftBefore)
             {
+                returningHome = false;
                 subtitles.newText = "And then off to work I went.";
                 soundPlayer.PlayOneShot(audioClips[11]);
             }
-            else if (prevScene == "Entrance" && currentScene.name == "Living Room")
+            else if (prevScene == "Living Room" && currentScene.name == "Entrance" && hasLeftBefore)
+            {
+                returningHome = false;
+                subtitles.newText = "And I headed out once more.";
+                soundPlayer.PlayOneShot(audioClips[22]);
+            }
+            else if (prevScene == "Entrance" && currentScene.name == "Living Room" && !returningHome)
             {
                 subtitles.newText = "Oh I forgot, I didn't leave quite yet.";
                 soundPlayer.PlayOneShot(audioClips[12]);
             }
             else if (prevScene == "Entrance" && currentScene.name == "Park 1")
             {
+                hasLeftBefore = true;
                 subtitles.newText = "I got to the park by my house.";
                 soundPlayer.PlayOneShot(parkAudioClips[0]);
             }
-            else if (prevScene == "Park 1" && currentScene.name == "Park 2")
+            else if (prevScene == "Park 1" && currentScene.name == "Entrance")
             {
+                returningHome = true;
+                subtitles.newText = "I returned home.";
+                soundPlayer.PlayOneShot(audioClips[21]);
+            }
+            else if (prevScene == "Park 1" && currentScene.name == "Park 2" && !dogStillSaid)
+            {
+                dogStillSaid = true;
                 subtitles.newText = "Where I saw this person walking their dog.";
                 soundPlayer.PlayOneShot(parkAudioClips[1]);
             }
             else if (prevScene == "Park 3" && currentScene.name == "Park 4")
             {
+                hasReachedParkEndBefore = true;
                 subtitles.newText = "I got near the end of the park.";
                 soundPlayer.PlayOneShot(parkAudioClips[6]);
             }
-            else if (prevScene == "Park 4" && currentScene.name == "Park 3")
+            else if (prevScene == "Park 4" && currentScene.name == "Park 3" && !hasGoneBackParkBefore)
             {
+                hasGoneBackParkBefore = true;
                 subtitles.newText = "But something else caught my eye.";
                 soundPlayer.PlayOneShot(parkAudioClips[8]);
+            }
+            else if (prevScene == "Park 4" && currentScene.name == "Park 3" && hasGoneBackParkBefore)
+            {
+                subtitles.newText = "But then I started going backwards again.";
+                soundPlayer.PlayOneShot(parkAudioClips[9]);
+            }
+            else if (prevScene == "Park 2" && currentScene.name == "Park 1" && hasReachedParkEndBefore && !hasSaidExercise)
+            {
+                hasSaidExercise = true;
+                subtitles.newText = "I thought I might as well get some exercise this morning, so I just ran back and forth along the path.";
+                soundPlayer.PlayOneShot(parkAudioClips[10]);
             }
         }
 
@@ -124,6 +166,32 @@ public class SceneManager : MonoBehaviour
             subtitles.newText = "Oh, y'know it was Spongebrett squareshorts on TV this morning";
             soundPlayer.PlayOneShot(audioClips[9]);
             livingStillSaid = true;
+        }
+        else if (currentScene.name == "Park 1" && stillTimer > 5f && !parkStillSaid1)
+        {
+            subtitles.newText = "I stopped to breathe in the fresh air.";
+            soundPlayer.PlayOneShot(parkAudioClips[12]);
+            parkStillSaid1 = true;
+        }
+        else if (stillTimer > 10f && !parkStillSaid2 && currentScene.name != "Park 2")
+        {
+            subtitles.newText = "I was already running late, but I just stood there for a bit.";
+            soundPlayer.PlayOneShot(parkAudioClips[13]);
+            parkStillSaid2 = true;
+        }
+        else if (currentScene.name == "Park 2" && stillTimer > 7f && !dogStillSaid)
+        {
+            subtitles.newText = "Then I just kind of stared at the stranger until they ran away.";
+            soundPlayer.PlayOneShot(parkAudioClips[3]);
+            dogStillSaid = true;
+            currentScene.transform.GetChild(5).gameObject.SetActive(false);
+            currentScene.transform.GetChild(6).gameObject.SetActive(false);
+        }
+        else if (currentScene.name == "Park 4" && stillTimer > 3f && !flowersStillSaid)
+        {
+            subtitles.newText = "I stopped to smell the flowers.";
+            soundPlayer.PlayOneShot(parkAudioClips[14]);
+            flowersStillSaid = true;
         }
 
         prevScene = currentScene.name;
