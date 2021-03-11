@@ -24,6 +24,7 @@ public class playerMove : MonoBehaviour
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         _input = GetComponent<playerInput>();
         rb = GetComponent<Rigidbody2D>();
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManager>();
@@ -35,6 +36,7 @@ public class playerMove : MonoBehaviour
         detectGround();
         jump();
         MoveRooms();
+        animationControl();
     }
 
     private void move()
@@ -53,11 +55,25 @@ public class playerMove : MonoBehaviour
         }
         //Update position
         transform.position = new Vector3(transform.position.x + velocity.x * Time.deltaTime, transform.position.y, 0);
+
     }
 
     void animationControl() 
     {
-        
+        if(velocity.x > 0.2)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+            anim.SetBool("walking", true);
+        }
+        else if (velocity.x < -0.2)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+            anim.SetBool("walking", true);
+        }
+        else
+        {
+            anim.SetBool("walking", false);
+        }
     }
 
     void jump() 

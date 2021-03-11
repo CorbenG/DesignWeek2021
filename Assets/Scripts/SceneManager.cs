@@ -16,6 +16,8 @@ public class SceneManager : MonoBehaviour
     bool isStill;
 
     bool hallwayStillSaid = false;
+    bool kitchenStillSaid = false;
+    bool livingStillSaid = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +42,7 @@ public class SceneManager : MonoBehaviour
         else
         {
             isStill = false;
+            stillTimer = 0;
         }
 
         if(prevScene != currentScene.name)
@@ -80,16 +83,26 @@ public class SceneManager : MonoBehaviour
                 subtitles.newText = "Oh I forgot, I didn't leave quite yet.";
                 soundPlayer.PlayOneShot(audioClips[12]);
             }
+        }
 
-
-            //Waiting cues
-            if (currentScene.name == "Hallway" && stillTimer > 3f)
-            {
-                Debug.Log("YUP");
-                subtitles.newText = "I stopped to look at the very interesting walls of the hallway";
-                soundPlayer.PlayOneShot(audioClips[3]);
-                hallwayStillSaid = true;
-            }
+        //Waiting cues
+        if (currentScene.name == "Hallway" && stillTimer > 3f && !hallwayStillSaid)
+        {
+            subtitles.newText = "I stopped to look at the very interesting walls of the hallway";
+            soundPlayer.PlayOneShot(audioClips[3]);
+            hallwayStillSaid = true;
+        }
+        else if (currentScene.name == "Kitchen" && stillTimer > 3f && !kitchenStillSaid)
+        {
+            subtitles.newText = "I was just standing around for a bit, admiring the beatiful countertop?";
+            soundPlayer.PlayOneShot(audioClips[6]);
+            kitchenStillSaid = true;
+        }
+        else if (currentScene.name == "Living Room" && stillTimer > 3f && !livingStillSaid)
+        {
+            subtitles.newText = "Oh, y'know it was Spongebrett squareshorts on TV this morning";
+            soundPlayer.PlayOneShot(audioClips[9]);
+            livingStillSaid = true;
         }
 
         prevScene = currentScene.name;
