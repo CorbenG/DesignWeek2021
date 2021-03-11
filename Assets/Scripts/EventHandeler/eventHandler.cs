@@ -16,6 +16,8 @@ public class eventHandler : MonoBehaviour
 
     GameObject ePopup;
 
+    public bool teaBox = false;
+
 
     private void Awake()
     {
@@ -34,16 +36,20 @@ public class eventHandler : MonoBehaviour
 
     void detectPlayerRange() 
     {
-        if (Vector3.Distance(player.transform.position, transform.position) <= interactableRange && !activateable.hasActivated)
+        if(!teaBox || GameObject.Find("Scene Manager").GetComponent<SceneManager>().hasDrankCoffee == true)
         {
-            playerInRange = true;
-            ePopup.SetActive(true);
+            if (Vector3.Distance(player.transform.position, transform.position) <= interactableRange && !activateable.hasActivated)
+            {
+                playerInRange = true;
+                ePopup.SetActive(true);
+            }
+            else
+            {
+                playerInRange = false;
+                ePopup.SetActive(false);
+            }
         }
-        else
-        {
-            playerInRange = false;
-            ePopup.SetActive(false);
-        }
+        
     }
 
     void detectPlayerInput() 

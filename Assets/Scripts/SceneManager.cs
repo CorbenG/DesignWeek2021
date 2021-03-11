@@ -16,6 +16,9 @@ public class SceneManager : MonoBehaviour
     float stillTimer;
     bool isStill;
 
+    public bool hasHouseKeys = false;
+    public bool hasDrankCoffee = false;
+
     bool hallwayStillSaid = false;
     bool kitchenStillSaid = false;
     bool livingStillSaid = false;
@@ -116,6 +119,7 @@ public class SceneManager : MonoBehaviour
             }
             else if (prevScene == "Park 1" && currentScene.name == "Park 2" && !dogStillSaid)
             {
+                dogStillSaid = true;
                 subtitles.newText = "Where I saw this person walking their dog.";
                 soundPlayer.PlayOneShot(parkAudioClips[1]);
             }
@@ -169,13 +173,13 @@ public class SceneManager : MonoBehaviour
             soundPlayer.PlayOneShot(parkAudioClips[12]);
             parkStillSaid1 = true;
         }
-        else if (stillTimer > 10f && !parkStillSaid2)
+        else if (stillTimer > 10f && !parkStillSaid2 && currentScene.name != "Park 2")
         {
             subtitles.newText = "I was already running late, but I just stood there for a bit.";
             soundPlayer.PlayOneShot(parkAudioClips[13]);
             parkStillSaid2 = true;
         }
-        else if (currentScene.name == "Park 2" && stillTimer > 3f && !dogStillSaid)
+        else if (currentScene.name == "Park 2" && stillTimer > 7f && !dogStillSaid)
         {
             subtitles.newText = "Then I just kind of stared at the stranger until they ran away.";
             soundPlayer.PlayOneShot(parkAudioClips[3]);
