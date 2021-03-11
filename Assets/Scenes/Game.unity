@@ -347,7 +347,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableRange: 1.5
   playerInRange: 0
-  teaBox: 0
 --- !u!114 &92100128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,9 +361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 92100126}
   subtitle: I wanted to feel like a kid again so I went down the slide.
-  houseKey: 0
-  coffeeCup: 0
-  teaBox: 0
 --- !u!212 &92100129
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1873,7 +1869,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableRange: 1.5
   playerInRange: 0
-  teaBox: 1
 --- !u!114 &636526812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1883,14 +1878,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 636526808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d328e2af6afc04cbf50e002e93dc60, type: 3}
+  m_Script: {fileID: 11500000, guid: facc0370b1c52e44d8f9d83c95900920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 636526810}
   subtitle: Oh, actually it might have been tea in my mug.
-  houseKey: 0
-  coffeeCup: 0
-  teaBox: 0
+  doorKeyObject: 0
+  coffeeObject: 0
+  teaObject: 1
 --- !u!212 &636526813
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7057,7 +7052,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableRange: 1.5
   playerInRange: 0
-  teaBox: 0
 --- !u!114 &836428827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7067,14 +7061,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 836428822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d328e2af6afc04cbf50e002e93dc60, type: 3}
+  m_Script: {fileID: 11500000, guid: facc0370b1c52e44d8f9d83c95900920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 836428825}
   subtitle: I drank my cup of coffee
-  houseKey: 0
-  coffeeCup: 1
-  teaBox: 0
+  doorKeyObject: 0
+  coffeeObject: 1
+  teaObject: 0
 --- !u!1 &864303277 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5073557113587066930, guid: 899bc6174e6d9df4db84919713f595a3,
@@ -8235,6 +8229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1168114127}
   - component: {fileID: 1168114126}
+  - component: {fileID: 1168114129}
   - component: {fileID: 1168114128}
   m_Layer: 0
   m_Name: Scene Manager
@@ -8302,8 +8297,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9877b1320190eb048ad94b1247c54558, type: 3}
   - {fileID: 8300000, guid: 6719ba877984db54a9679511caaef7fb, type: 3}
   streetAudioClips: []
-  hasHouseKeys: 0
-  hasDrankCoffee: 0
 --- !u!4 &1168114127
 Transform:
   m_ObjectHideFlags: 0
@@ -8414,6 +8407,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1168114129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168114125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2641d441eee23d84fad32d280ec8692b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorKey: 0
+  hasDrankCoffee: 0
+  hasDrankTea: 0
 --- !u!1 &1169734287
 GameObject:
   m_ObjectHideFlags: 0
@@ -9116,7 +9124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableRange: 1.5
   playerInRange: 0
-  teaBox: 0
 --- !u!114 &1277966455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9131,9 +9138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 1277966453}
   subtitle: I went up and pet the dog.
-  houseKey: 0
-  coffeeCup: 0
-  teaBox: 0
 --- !u!212 &1277966456
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10701,7 +10705,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 069bdd8fd7e6fdb4aae04413940a7ee5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11110,7 +11114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableRange: 1.5
   playerInRange: 0
-  teaBox: 0
 --- !u!114 &1706896767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11120,14 +11123,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1706896763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d328e2af6afc04cbf50e002e93dc60, type: 3}
+  m_Script: {fileID: 11500000, guid: facc0370b1c52e44d8f9d83c95900920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 1706896765}
   subtitle: Right, I found my house keys on my bedside table.
-  houseKey: 1
-  coffeeCup: 0
-  teaBox: 0
+  doorKeyObject: 1
+  coffeeObject: 0
+  teaObject: 0
 --- !u!212 &1706896768
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12215,7 +12218,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableRange: 1.5
   playerInRange: 0
-  teaBox: 0
 --- !u!114 &1985267974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12230,9 +12232,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 1985267972}
   subtitle: It was a beautiful day outside, so I went to grab a coat?
-  houseKey: 0
-  coffeeCup: 0
-  teaBox: 0
 --- !u!212 &1985267975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12514,7 +12513,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 069bdd8fd7e6fdb4aae04413940a7ee5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
