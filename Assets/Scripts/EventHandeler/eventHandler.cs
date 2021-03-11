@@ -14,13 +14,15 @@ public class eventHandler : MonoBehaviour
     private GameObject player;
     private playerInput _input;
 
+    GameObject ePopup;
+
 
     private void Awake()
     {
         player = GameObject.Find("Player");
         _input = player.GetComponent<playerInput>();
         activateable = GetComponent<IActivateable>();
-
+        ePopup = this.transform.GetChild(0).gameObject;
     }
 
     private void Update()
@@ -32,8 +34,16 @@ public class eventHandler : MonoBehaviour
 
     void detectPlayerRange() 
     {
-        if (Vector3.Distance(player.transform.position, transform.position) <= interactableRange) playerInRange = true;
-        else playerInRange = false;
+        if (Vector3.Distance(player.transform.position, transform.position) <= interactableRange && !activateable.hasActivated)
+        {
+            playerInRange = true;
+            ePopup.SetActive(true);
+        }
+        else
+        {
+            playerInRange = false;
+            ePopup.SetActive(false);
+        }
     }
 
     void detectPlayerInput() 

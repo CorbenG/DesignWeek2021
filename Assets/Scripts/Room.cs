@@ -6,6 +6,9 @@ public class Room : MonoBehaviour
 {
     public GameObject leftRoom;
     public GameObject rightRoom;
+    public GameObject interactRoom;
+    public enum Inside { Indoors,Outdoors }
+    public Inside inside;
     BoxCollider2D leftCol;
     BoxCollider2D rightCol;
 
@@ -51,6 +54,16 @@ public class Room : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-        
+        else if (direction == "interact" || direction == "Interact")
+        {
+            if (interactRoom != null)
+            {
+                interactRoom.SetActive(true);
+                sceneManager.currentScene = interactRoom;
+                player.transform.position = new Vector3(-4, player.transform.position.y, 0);
+                gameObject.SetActive(false);
+            }
+        }
+
     }
 }

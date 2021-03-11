@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(playerInput))]
 public class playerMove : MonoBehaviour
@@ -22,12 +23,20 @@ public class playerMove : MonoBehaviour
 
     SceneManager sceneManager;
 
+    AudioSource audioSource;
+    public float audioTiming = 0.4f;
+    float nextPlayTime;
+    public AudioClip defaultWalking;
+
+
     private void Start()
     {
         anim = GetComponent<Animator>();
         _input = GetComponent<playerInput>();
         rb = GetComponent<Rigidbody2D>();
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManager>();
+        audioSource = GetComponent<AudioSource>();
+        nextPlayTime = Time.time;
     }
 
     private void Update()
@@ -60,19 +69,31 @@ public class playerMove : MonoBehaviour
 
     void animationControl() 
     {
+        //Control Flipping character
         if(velocity.x > 0.2)
         {
             GetComponent<SpriteRenderer>().flipX = true;
-            anim.SetBool("walking", true);
+
         }
         else if (velocity.x < -0.2)
         {
             GetComponent<SpriteRenderer>().flipX = false;
+        }
+        //Control walking animation
+        if(Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0)
+        {
             anim.SetBool("walking", true);
         }
         else
         {
             anim.SetBool("walking", false);
+        }
+        //Control walking sound
+        if (Time.time >= nextPlayTime && Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0)
+        {
+            nextPlayTime = Time.time + audioTiming;
+            audioSource.pitch = Random.Range(0.5f, 1f);
+            audioSource.PlayOneShot(defaultWalking);
         }
     }
 
