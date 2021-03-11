@@ -6,6 +6,8 @@ public class Room : MonoBehaviour
 {
     public GameObject leftRoom;
     public GameObject rightRoom;
+    public enum Inside { Indoors,Outdoors }
+    public Inside inside;
     BoxCollider2D leftCol;
     BoxCollider2D rightCol;
 
