@@ -9,5 +9,12 @@ public class playerInput : MonoBehaviour
     public float moveX { get; private set; }
 
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump")) jump = true;
 
+        if (Input.GetButtonDown("Interact")) interact = true;
+
+        moveX = Input.GetAxisRaw("Horizontal");
+    }
 }
