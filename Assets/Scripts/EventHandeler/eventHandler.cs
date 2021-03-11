@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(IActivateable))]
 public class eventHandler : MonoBehaviour
 {
     public float interactableRange;

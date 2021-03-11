@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(playerInput))]
 public class playerMove : MonoBehaviour
 {
     private playerInput _input;
