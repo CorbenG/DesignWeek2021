@@ -11,6 +11,7 @@ public class SceneManager : MonoBehaviour
     string prevScene;
 
     public AudioClip[] audioClips;
+    public AudioClip[] parkAudioClips;
 
     float stillTimer;
     bool isStill;
@@ -82,6 +83,26 @@ public class SceneManager : MonoBehaviour
             {
                 subtitles.newText = "Oh I forgot, I didn't leave quite yet.";
                 soundPlayer.PlayOneShot(audioClips[12]);
+            }
+            else if (prevScene == "Entrance" && currentScene.name == "Park 1")
+            {
+                subtitles.newText = "I got to the park by my house.";
+                soundPlayer.PlayOneShot(parkAudioClips[0]);
+            }
+            else if (prevScene == "Park 1" && currentScene.name == "Park 2")
+            {
+                subtitles.newText = "Where I saw this person walking their dog.";
+                soundPlayer.PlayOneShot(parkAudioClips[1]);
+            }
+            else if (prevScene == "Park 3" && currentScene.name == "Park 4")
+            {
+                subtitles.newText = "I got near the end of the park.";
+                soundPlayer.PlayOneShot(parkAudioClips[6]);
+            }
+            else if (prevScene == "Park 4" && currentScene.name == "Park 3")
+            {
+                subtitles.newText = "But something else caught my eye.";
+                soundPlayer.PlayOneShot(parkAudioClips[8]);
             }
         }
 
