@@ -12,6 +12,7 @@ public class SceneManager : MonoBehaviour
 
     public AudioClip[] audioClips;
     public AudioClip[] parkAudioClips;
+    public AudioClip[] streetAudioClips;
 
     float stillTimer;
     bool isStill;
@@ -30,6 +31,7 @@ public class SceneManager : MonoBehaviour
     bool hasReachedParkEndBefore = false;
     bool hasGoneBackParkBefore = false;
     bool hasSaidExercise = false;
+    bool comingFromHome = true;
 
     // Start is called before the first frame update
     void Start()
@@ -123,17 +125,18 @@ public class SceneManager : MonoBehaviour
             }
             else if (prevScene == "Park 3" && currentScene.name == "Park 4")
             {
+                comingFromHome = true;
                 hasReachedParkEndBefore = true;
                 subtitles.newText = "I got near the end of the park.";
                 soundPlayer.PlayOneShot(parkAudioClips[6]);
             }
-            else if (prevScene == "Park 4" && currentScene.name == "Park 3" && !hasGoneBackParkBefore)
+            else if (prevScene == "Park 4" && currentScene.name == "Park 3" && !hasGoneBackParkBefore && comingFromHome)
             {
                 hasGoneBackParkBefore = true;
                 subtitles.newText = "But something else caught my eye.";
                 soundPlayer.PlayOneShot(parkAudioClips[8]);
             }
-            else if (prevScene == "Park 4" && currentScene.name == "Park 3" && hasGoneBackParkBefore)
+            else if (prevScene == "Park 4" && currentScene.name == "Park 3" && hasGoneBackParkBefore && comingFromHome)
             {
                 subtitles.newText = "But then I started going backwards again.";
                 soundPlayer.PlayOneShot(parkAudioClips[9]);
@@ -143,6 +146,17 @@ public class SceneManager : MonoBehaviour
                 hasSaidExercise = true;
                 subtitles.newText = "I thought I might as well get some exercise this morning, so I just ran back and forth along the path.";
                 soundPlayer.PlayOneShot(parkAudioClips[10]);
+            }
+            else if (prevScene == "Park 4" && currentScene.name == "Street 1")
+            {
+                comingFromHome = false;
+                subtitles.newText = "And I continued on my way to midtown.";
+                soundPlayer.PlayOneShot(parkAudioClips[7]);
+            }
+            else if (prevScene == "Street 1" && currentScene.name == "Park 4")
+            {
+                subtitles.newText = "I went back into the park.";
+                soundPlayer.PlayOneShot(parkAudioClips[15]);
             }
         }
 
