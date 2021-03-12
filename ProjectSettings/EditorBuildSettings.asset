@@ -8,12 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
-    guid: 0b180dbe536821540b4c60afb9cdf8c0
   - enabled: 0
     path: Assets/Scenes/Corben.unity
     guid: 2a4f31e08946d0b4d9bed3ab841c91e9
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 0b180dbe536821540b4c60afb9cdf8c0
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: e717cd9b72f9ad74ab1fc5b630a5f53d
