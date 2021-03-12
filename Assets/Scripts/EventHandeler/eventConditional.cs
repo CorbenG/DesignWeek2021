@@ -9,6 +9,9 @@ public class eventConditional : MonoBehaviour, IActivateable
     public string[] subtitle;
     Subtitles subtitles;
 
+    public int maxNumOfTimesActivated;
+    public int currentNumOfTimesActivated;
+
     public bool hotDogObject;
     public bool bagelObject;
 
@@ -35,7 +38,7 @@ public class eventConditional : MonoBehaviour, IActivateable
             source.Play();
         }
 
-        if (!inventory.hasHotdog && inventory.hasMoney || !inventory.hasBagel && inventory.hasMoney) 
+        if (!inventory.hasHotdog && inventory.hasMoney && currentNumOfTimesActivated < 1 || !inventory.hasBagel && inventory.hasMoney && currentNumOfTimesActivated < 1)
         {
             source.clip = clips[1];
             source.Play();
@@ -43,13 +46,16 @@ public class eventConditional : MonoBehaviour, IActivateable
             if (hotDogObject) inventory.hasHotdog = true;
             if (bagelObject) inventory.hasBagel = true;
 
+            currentNumOfTimesActivated++;
+
             if (!bagelObject && !hotDogObject) Debug.LogError("No object selected for: " + gameObject.name);
         }
 
-        if (inventory.hasHotdog && inventory.hasMoney || inventory.hasBagel && inventory.hasMoney)
+        if (inventory.hasHotdog && inventory.hasMoney && currentNumOfTimesActivated == 1 || inventory.hasBagel && inventory.hasMoney && currentNumOfTimesActivated == 1)
         {
-            source.clip = clips[3];
+            source.clip = clips[2];
             source.Play();
+            currentNumOfTimesActivated++;
             hasActivated = true;
         }
 
