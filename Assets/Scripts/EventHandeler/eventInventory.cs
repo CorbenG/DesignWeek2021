@@ -11,4 +11,5 @@ public class eventInventory : MonoBehaviour
     public bool hasSkates;
     public bool hasUmbrella;
     public bool hasBagel;
+    public bool hasHotdog;
 }
