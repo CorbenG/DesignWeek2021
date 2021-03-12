@@ -28,4 +28,10 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void loadMainScene() 
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+
+    }
 }
