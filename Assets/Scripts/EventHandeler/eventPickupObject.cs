@@ -13,6 +13,11 @@ public class eventPickupObject : MonoBehaviour, IActivateable
     public bool coffeeObject;
     public bool teaObject;
 
+    public bool moneyObject;
+    public bool skatesObject;
+    public bool umbrellaObject;
+    public bool bagelObject;
+
     private eventInventory inventory;
 
     public bool hasActivated { get; set; }
@@ -35,6 +40,10 @@ public class eventPickupObject : MonoBehaviour, IActivateable
             if (doorKeyObject) inventory.doorKey = true;
             if (coffeeObject) inventory.hasDrankCoffee = true;
             if (teaObject) inventory.hasDrankTea = true;
+            if (moneyObject) inventory.hasMoney = true;
+            if (skatesObject) inventory.hasSkates = true;
+            if (umbrellaObject) inventory.hasUmbrella = true;
+            if (bagelObject) inventory.hasBagel = true;
 
             GetComponent<SpriteRenderer>().enabled = false;
             hasActivated = true;
