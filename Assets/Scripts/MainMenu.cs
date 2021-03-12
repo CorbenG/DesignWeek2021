@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("Load Scene here");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("House");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
     }
 
     public void Exit()
