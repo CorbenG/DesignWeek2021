@@ -73,14 +73,17 @@ public class playerMove : MonoBehaviour
         if(velocity.x > 0.2)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+            //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
 
         }
         else if (velocity.x < -0.2)
         {
             GetComponent<SpriteRenderer>().flipX = false;
+            //transform.localScale = new Vector3(transform.localScale.x * 1, transform.localScale.y, transform.localScale.z);
+
         }
         //Control walking animation
-        if(Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0)
+        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0)
         {
             anim.SetBool("walking", true);
         }
