@@ -8037,7 +8037,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fdde0207d3f06634f9b327de1a0bcc33, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb65328fb349df149829df09bf036b9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8989,6 +8989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1277966452}
   - component: {fileID: 1277966456}
+  - component: {fileID: 1277966457}
   - component: {fileID: 1277966455}
   - component: {fileID: 1277966454}
   - component: {fileID: 1277966453}
@@ -9007,8 +9008,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277966451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.702, y: -1.66, z: 0}
-  m_LocalScale: {x: 0.1311524, y: 0.1311524, z: 0.1311524}
+  m_LocalPosition: {x: 0.687, y: -1.677, z: 0}
+  m_LocalScale: {x: 0.1416446, y: 0.1416446, z: 0.1416446}
   m_Children:
   - {fileID: 1995273054}
   m_Father: {fileID: 867208836}
@@ -9145,7 +9146,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277966451}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -9188,6 +9189,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1277966457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277966451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2e9ccbd79af8a44b4c0d6c2c67ac63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 1277966453}
+  clips:
+  - {fileID: 8300000, guid: 53e962e5a55cdb54dba49926131ce432, type: 3}
+  - {fileID: 8300000, guid: ae40bfe71cdb653449f15e4e736351ab, type: 3}
+  - {fileID: 8300000, guid: ae40bfe71cdb653449f15e4e736351ab, type: 3}
+  - {fileID: 8300000, guid: ae40bfe71cdb653449f15e4e736351ab, type: 3}
+  - {fileID: 8300000, guid: ae40bfe71cdb653449f15e4e736351ab, type: 3}
+  subtitle:
+  - I went up and pet the dog.
+  - I pet the dog again
+  - I pet the dog again
+  - I pet the dog again
+  - I pet the dog again
+  maxNumOfTimesActivated: 5
+  currentNumOfTimesActivated: 0
+  spriteToSwitchTo: {fileID: 21300000, guid: da08db439a6c00b4f89d4e5cf7cf53d5, type: 3}
 --- !u!1 &1284681352
 GameObject:
   m_ObjectHideFlags: 0
@@ -12069,7 +12098,7 @@ PrefabInstance:
     - target: {fileID: 5073557113587066930, guid: 899bc6174e6d9df4db84919713f595a3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 899bc6174e6d9df4db84919713f595a3, type: 3}
@@ -12710,7 +12739,7 @@ PrefabInstance:
     - target: {fileID: 5073557113587066930, guid: 899bc6174e6d9df4db84919713f595a3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 899bc6174e6d9df4db84919713f595a3, type: 3}
