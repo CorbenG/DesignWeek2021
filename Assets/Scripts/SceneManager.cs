@@ -158,6 +158,36 @@ public class SceneManager : MonoBehaviour
                 subtitles.newText = "I went back into the park.";
                 soundPlayer.PlayOneShot(parkAudioClips[15]);
             }
+            else if (prevScene == "Street 1" && currentScene.name == "Street 2")
+            {
+                subtitles.newText = "I kept walking.";
+                soundPlayer.PlayOneShot(streetAudioClips[1]);
+            }
+            else if (prevScene == "Street 2" && currentScene.name == "Street Top 1")
+            {
+                subtitles.newText = "And for some reason I just really felt like climbing the fire escape this morning.";
+                soundPlayer.PlayOneShot(streetAudioClips[2]);
+            }
+            else if (prevScene == "Street Top 1" && currentScene.name == "Street 2")
+            {
+                subtitles.newText = "Then I climbed back down the fire escape.";
+                soundPlayer.PlayOneShot(streetAudioClips[7]);
+            }
+            else if (prevScene == "Street Top 1" && currentScene.name == "Street Top 2")
+            {
+                subtitles.newText = "On top of the roof of the building, I found a homeless guy!";
+                soundPlayer.PlayOneShot(streetAudioClips[5]);
+            }
+            else if (prevScene == "Street 2" && currentScene.name == "Street 3")
+            {
+                subtitles.newText = "I passed by an old man feeding the birds.";
+                soundPlayer.PlayOneShot(streetAudioClips[4]);
+            }
+            else if (prevScene == "Street 3" && currentScene.name == "Street 4")
+            {
+                subtitles.newText = "And on the next street, there was a guy selling hotdogs.";
+                soundPlayer.PlayOneShot(streetAudioClips[16]);
+            }
         }
 
         //Waiting cues
