@@ -32,6 +32,8 @@ public class SceneManager : MonoBehaviour
     bool hasGoneBackParkBefore = false;
     bool hasSaidExercise = false;
     bool comingFromHome = true;
+    bool seenRatKing = false;
+    bool comingFromLeftSewer = true;
 
     // Start is called before the first frame update
     void Start()
@@ -187,6 +189,48 @@ public class SceneManager : MonoBehaviour
             {
                 subtitles.newText = "And on the next street, there was a guy selling hotdogs.";
                 soundPlayer.PlayOneShot(streetAudioClips[16]);
+            }
+            else if (prevScene == "Street 4" && currentScene.name == "Sewer 1")
+            {
+                subtitles.newText = "And I couldn't tell you why, but I jumped down into an open manhole.";
+                soundPlayer.PlayOneShot(streetAudioClips[3]);
+            }
+            else if (prevScene == "Sewer 1" && currentScene.name == "Sewer 2" && comingFromLeftSewer)
+            {
+                subtitles.newText = "I walked further into the sewer.";
+                soundPlayer.PlayOneShot(streetAudioClips[8]);
+            }
+            else if (prevScene == "Sewer 2" && currentScene.name == "Sewer 3" && !seenRatKing)
+            {
+                subtitles.newText = "I thought I saw something further in...";
+                soundPlayer.PlayOneShot(streetAudioClips[9]);
+            }
+            else if (prevScene == "Sewer 3" && currentScene.name == "Sewer 4" && !seenRatKing)
+            {
+                comingFromLeftSewer = false;
+                seenRatKing = true;
+                subtitles.newText = "And I walked right into the throne room of the sewer rat king! He was already dead, but I wondered how long he was down here.";
+                soundPlayer.PlayOneShot(streetAudioClips[10]);
+            }
+            else if (prevScene == "Sewer 3" && currentScene.name == "Sewer 4" && seenRatKing)
+            {
+                comingFromLeftSewer = false;
+                subtitles.newText = "But first I wanted to take another look at the rat king.";
+                soundPlayer.PlayOneShot(streetAudioClips[14]);
+            }
+            else if (prevScene == "Sewer 4" && currentScene.name == "Sewer 3")
+            {
+                subtitles.newText = "And so I headed back towards the ladder.";
+                soundPlayer.PlayOneShot(streetAudioClips[13]);
+            }
+            else if (prevScene == "Sewer 2" && currentScene.name == "Sewer 1")
+            {
+                comingFromLeftSewer = true;
+            }
+            else if (prevScene == "Sewer 1" && currentScene.name == "Street 4")
+            {
+                subtitles.newText = "I climbed my way out of the sewer.";
+                soundPlayer.PlayOneShot(streetAudioClips[15]);
             }
         }
 
