@@ -232,6 +232,11 @@ public class SceneManager : MonoBehaviour
                 subtitles.newText = "I climbed my way out of the sewer.";
                 soundPlayer.PlayOneShot(streetAudioClips[15]);
             }
+            else if (prevScene == "Street 4" && currentScene.name == "downtown 1")
+            {
+                subtitles.newText = "And I continued walking all the way to downtown.";
+                soundPlayer.PlayOneShot(streetAudioClips[19]);
+            }
         }
 
         //Waiting cues
