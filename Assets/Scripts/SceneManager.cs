@@ -13,6 +13,7 @@ public class SceneManager : MonoBehaviour
     public AudioClip[] audioClips;
     public AudioClip[] parkAudioClips;
     public AudioClip[] streetAudioClips;
+    public AudioClip[] downtownAudioClips;
 
     float stillTimer;
     bool isStill;
@@ -25,6 +26,7 @@ public class SceneManager : MonoBehaviour
     bool parkStillSaid2 = false;
     bool dogStillSaid = false;
     bool flowersStillSaid = false;
+    bool carStillSaid = false;
 
     bool returningHome = false;
     bool hasLeftBefore = false;
@@ -237,6 +239,26 @@ public class SceneManager : MonoBehaviour
                 subtitles.newText = "And I continued walking all the way to downtown.";
                 soundPlayer.PlayOneShot(streetAudioClips[19]);
             }
+            else if (prevScene == "downtown 1" && currentScene.name == "downtown 2")
+            {
+                subtitles.newText = "I passed by this guy with a fancy looking car.";
+                soundPlayer.PlayOneShot(downtownAudioClips[5]);
+            }
+            else if (prevScene == "downtown 1" && currentScene.name == "Inside Bagel Shop")
+            {
+                subtitles.newText = "I entered the bagel shop I pass by on my way.";
+                soundPlayer.PlayOneShot(downtownAudioClips[0]);
+            }
+            else if (prevScene == "downtown 2" && currentScene.name == "downtown 3")
+            {
+                subtitles.newText = "And I finally reached my destination, my work.";
+                soundPlayer.PlayOneShot(downtownAudioClips[6]);
+            }
+            else if (prevScene == "downtown 3" && currentScene.name == "downtown 2")
+            {
+                subtitles.newText = "But I wasn't ready to start yet.";
+                soundPlayer.PlayOneShot(downtownAudioClips[7]);
+            }
         }
 
         //Waiting cues
@@ -283,6 +305,12 @@ public class SceneManager : MonoBehaviour
             subtitles.newText = "I stopped to smell the flowers.";
             soundPlayer.PlayOneShot(parkAudioClips[14]);
             flowersStillSaid = true;
+        }
+        else if (currentScene.name == "downtown 2" && stillTimer > 3f && !carStillSaid)
+        {
+            subtitles.newText = "I stood and stared at the car";
+            soundPlayer.PlayOneShot(downtownAudioClips[4]);
+            carStillSaid = true;
         }
 
         prevScene = currentScene.name;
